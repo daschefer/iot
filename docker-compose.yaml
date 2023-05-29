@@ -3,6 +3,9 @@ services:
     image: grafana/grafana
     ports:
       - 3000:3000
+    volumes:
+      - './config/grafana/grafana.ini:/etc/grafana/grafana.ini'
+      - './config/grafana/datasource.yaml:/etc/grafana/provisioning/datasources/datasource.yaml'
   influxdb:
     image: influxdb:2.7
     ports:
@@ -18,5 +21,6 @@ services:
       - DOCKER_INFLUXDB_INIT_BUCKET=ope
       - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=my-super-secret-auth-token
       - DOCKER_INFLUXDB_INIT_RETENTION=1w
+
 volumes:
   influx-vol:
