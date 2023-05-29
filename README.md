@@ -12,19 +12,19 @@ flowchart LR
 
 ## GRAFANA , InfluxDB , MOSQUITTO y Telegraf
 
-- Grafana: Intrface web para generar paneles de control | dashboards conectado a una base de datos InfluxDB 
+- Grafana: Intrface web para generar paneles de control | dashboards conectado a una base de datos InfluxDB
 
 - InfluxDB: Base de datos de serie de tiempo
 
-- Mosquitto : Broker de mensajes que implementa el protocolo MQTT 
+- Mosquitto : Broker de mensajes que implementa el protocolo MQTT
   adicionalmente una instancia de node-exporter que provee datos de monitoreo de
   hardware
 
 - Telegraf permite integrar MQTT e InfluxDB, basicamente inserta los mensajes de MQTT en la base de datos InfluxDB
 
-- Emulador python: Script de python que sirve para emular carga de dispositivos IoT 
+- Emulador python: Script de python que sirve para emular carga de dispositivos IoT
 
-## 
+##
 
 # Requerimientos
 
@@ -70,3 +70,11 @@ Los pasos realizados por la persona evaluadora serán los siguientes
 4. Ingresar Grafana y explorar los datos del datasource InfluxDB
 
 **Adicionalmente el profesor puede realizar preguntas adicionales a los integrantes del grupo para determinar la nota final**
+
+```json
+{
+
+  "cambio":"soy un cambio en JSON"
+}
+
+```
