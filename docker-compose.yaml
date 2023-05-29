@@ -21,6 +21,12 @@ services:
       - DOCKER_INFLUXDB_INIT_BUCKET=ope
       - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=my-super-secret-auth-token
       - DOCKER_INFLUXDB_INIT_RETENTION=1w
-
+  mqtt:
+    image: eclipse-mosquitto:2
+    environment:
+      - TZ=America/Buenos_Aires
+    ports:
+      - "8883:1883"
+      - "9001:9001"
 volumes:
   influx-vol:
