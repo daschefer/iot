@@ -1,6 +1,7 @@
 services:
   grafana:
     image: grafana/grafana
+    restart: always
     ports:
       - 3000:3000
     volumes:
@@ -8,6 +9,7 @@ services:
       - './config/grafana/datasource.yaml:/etc/grafana/provisioning/datasources/datasource.yaml'
   influxdb:
     image: influxdb:2.7
+    restart: always
     ports:
       - 8086:8086
     volumes:
@@ -23,10 +25,13 @@ services:
       - DOCKER_INFLUXDB_INIT_RETENTION=1w
   mqtt:
     image: eclipse-mosquitto:2
+    restart: always
     environment:
       - TZ=America/Buenos_Aires
     ports:
       - "8883:1883"
       - "9001:9001"
+    volumes:
+      - ./config/mqtt/mosquitto.conf:/mosquitto/config/mosquitto.conf
 volumes:
   influx-vol:
