@@ -10,10 +10,13 @@ services:
     volumes:
       - influx-vol:/var/lib/influxdb2
     environment:
+      - TZ=America/Buenos_Aires
       - DOCKER_INFLUXDB_INIT_MODE=setup
-      - DOCKER_INFLUXDB_INIT_USERNAME=root
-      - DOCKER_INFLUXDB_INIT_PASSWORD=fruta
+      - DOCKER_INFLUXDB_INIT_USERNAME=admin
+      - DOCKER_INFLUXDB_INIT_PASSWORD=supersecret
       - DOCKER_INFLUXDB_INIT_ORG=unahur
       - DOCKER_INFLUXDB_INIT_BUCKET=ope
+      - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=my-super-secret-auth-token
+      - DOCKER_INFLUXDB_INIT_RETENTION=1w
 volumes:
-  influx-vol: 
+  influx-vol:
