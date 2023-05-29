@@ -70,11 +70,3 @@ Los pasos realizados por la persona evaluadora serán los siguientes
 4. Ingresar Grafana y explorar los datos del datasource InfluxDB
 
 **Adicionalmente el profesor puede realizar preguntas adicionales a los integrantes del grupo para determinar la nota final**
-
-```json
-{
-
-  "cambio":"soy un cambio en JSON"
-}
-
-```
