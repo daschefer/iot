@@ -1,0 +1,19 @@
+services:
+  grafana:
+    image: grafana/grafana
+    ports:
+      - 3000:3000
+  influxdb:
+    image: influxdb:2.7
+    ports:
+      - 8086:8086
+    volumes:
+      - influx-vol:/var/lib/influxdb2
+    environment:
+      - DOCKER_INFLUXDB_INIT_MODE=setup
+      - DOCKER_INFLUXDB_INIT_USERNAME=root
+      - DOCKER_INFLUXDB_INIT_PASSWORD=fruta
+      - DOCKER_INFLUXDB_INIT_ORG=unahur
+      - DOCKER_INFLUXDB_INIT_BUCKET=ope
+volumes:
+  influx-vol: 
