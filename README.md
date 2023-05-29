@@ -4,7 +4,7 @@ El siguiente trabajo practico requiere el despliegue de una solucion IoT que con
 
 ```mermaid
 flowchart LR
-    A[EMULATOR] ==>|PUBLISH| M(MOSQUITTO)
+    A[PUBLISHER] ==>|PUBLISH| M(MOSQUITTO)
     T[TELEGRAF] ==>|SUBSCRIBE| M
     T==> |PUSH| I[(INFLUXDB)]
     G(GRAFANA) ==> I
@@ -24,7 +24,7 @@ flowchart LR
 
 - Emulador python: Script de python que sirve para emular carga de dispositivos IoT
 
-##
+## 
 
 # Requerimientos
 
