@@ -1,13 +1,17 @@
 services:
   grafana:
     image: grafana/grafana
+    restart: always
     ports:
       - 3000:3000
     volumes:
       - './config/grafana/grafana.ini:/etc/grafana/grafana.ini'
       - './config/grafana/datasource.yaml:/etc/grafana/provisioning/datasources/datasource.yaml'
+      - './config/grafana/dashboard.yaml:/etc/grafana/provisioning/dashboards/dashboard.yaml'
+      - './config/grafana/dashboards/micasa.json:/app/dashboards/micasa.json'
   influxdb:
     image: influxdb:2.7
+    restart: always
     ports:
       - 8086:8086
     volumes:
@@ -21,6 +25,31 @@ services:
       - DOCKER_INFLUXDB_INIT_BUCKET=ope
       - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=my-super-secret-auth-token
       - DOCKER_INFLUXDB_INIT_RETENTION=1w
-
+  mqtt:
+    image: eclipse-mosquitto:2
+    restart: always
+    environment:
+      - TZ=America/Buenos_Aires
+    ports:
+      - "8883:1883"
+      - "9001:9001"
+    volumes:
+      - ./config/mqtt/mosquitto.conf:/mosquitto/config/mosquitto.conf
+  publisher:
+    build:
+      context: ./publisher
+      dockerfile: ./Dockerfile
+    depends_on:
+      - mqtt
+  telegraf:
+    image: telegraf:1.26.3-alpine
+    environment:
+      - HOSTNAME=telegraf
+      - TZ=America/Buenos_Aires
+    volumes:
+      - ./config/telegraf/telegraf.conf:/etc/telegraf/telegraf.conf:ro
+    depends_on:
+      - influxdb
+      - mqtt
 volumes:
   influx-vol:
