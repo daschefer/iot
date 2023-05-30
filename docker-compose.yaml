@@ -7,6 +7,8 @@ services:
     volumes:
       - './config/grafana/grafana.ini:/etc/grafana/grafana.ini'
       - './config/grafana/datasource.yaml:/etc/grafana/provisioning/datasources/datasource.yaml'
+      - './config/grafana/dashboard.yaml:/etc/grafana/provisioning/dashboards/dashboard.yaml'
+      - './config/grafana/dashboards/micasa.json:/app/dashboards/micasa.json'
   influxdb:
     image: influxdb:2.7
     restart: always
@@ -38,6 +40,16 @@ services:
       context: ./publisher
       dockerfile: ./Dockerfile
     depends_on:
+      - mqtt
+  telegraf:
+    image: telegraf:1.26.3-alpine
+    environment:
+      - HOSTNAME=telegraf
+      - TZ=America/Buenos_Aires
+    volumes:
+      - ./config/telegraf/telegraf.conf:/etc/telegraf/telegraf.conf:ro
+    depends_on:
+      - influxdb
       - mqtt
 volumes:
   influx-vol:
