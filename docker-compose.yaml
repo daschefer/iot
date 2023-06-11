@@ -62,10 +62,16 @@ services:
   nginx:
     image: nginx:1.24
     ports:
+      - 443:443
+      # SOLO PASA HACER LA REDIRECCION A HTTPS
       - 80:80
     privileged: true
     volumes:
+      - certs:/etc/ssl/private/:ro
       - ./config/nginx/nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      certgen:
+        condition: service_completed_successfully
 volumes:
   influx-vol:
   certs:
