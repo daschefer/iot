@@ -82,11 +82,4 @@ Volúmenes:
 - [MarkText](https://github.com/marktext/marktext#windows)
 - [Draw.io VSCode Plug-In](https://marketplace.visualstudio.com/items?itemName=hediet.vscode-drawio)
 
-# TODO
 
-grafana
-
-- Fijar version
-- POner timezone
-  mqtt
-- corregir puerto
