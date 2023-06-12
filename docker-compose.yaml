@@ -1,10 +1,11 @@
 services:
   grafana:
-    image: grafana/grafana
+    image: grafana/grafana:9.5.3
     restart: always
     expose:
       - 3000
     volumes:
+      - TZ=America/Buenos_Aires
       - './config/grafana/grafana.ini:/etc/grafana/grafana.ini'
       - './config/grafana/datasource.yaml:/etc/grafana/provisioning/datasources/datasource.yaml'
       - './config/grafana/dashboard.yaml:/etc/grafana/provisioning/dashboards/dashboard.yaml'
@@ -31,7 +32,7 @@ services:
     environment:
       - TZ=America/Buenos_Aires
     expose:
-      - 8883
+      - 1883
       - 9001
     volumes:
       - ./config/mqtt/mosquitto.conf:/mosquitto/config/mosquitto.conf
